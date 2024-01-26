@@ -27,8 +27,8 @@ local imap = function(key, effect)
 end
 
 -- save with ctrl+s
-imap("<C-s>", "<cmd>:w<cr><esc>")
-nmap("<C-s>", "<cmd>:w<cr><esc>")
+-- imap("<C-s>", "<cmd>:w<cr><esc>")
+-- nmap("<C-s>", "<cmd>:w<cr><esc>")
 
 -- Move between windows using <ctrl> direction
 nmap("<C-j>", "<C-W>j")
@@ -37,10 +37,10 @@ nmap("<C-h>", "<C-W>h")
 nmap("<C-l>", "<C-W>l")
 
 -- Resize window using <shift> arrow keys
-nmap("<S-Up>", "<cmd>resize +2<CR>")
-nmap("<S-Down>", "<cmd>resize -2<CR>")
-nmap("<S-Left>", "<cmd>vertical resize -2<CR>")
-nmap("<S-Right>", "<cmd>vertical resize +2<CR>")
+-- nmap("<S-Up>", "<cmd>resize +2<CR>")
+-- nmap("<S-Down>", "<cmd>resize -2<CR>")
+-- nmap("<S-Left>", "<cmd>vertical resize -2<CR>")
+-- nmap("<S-Right>", "<cmd>vertical resize +2<CR>")
 
 -- Add undo break-points
 imap(",", ",<c-g>u")
