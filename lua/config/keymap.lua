@@ -72,6 +72,7 @@ nmap("<esc>", "<cmd>noh<cr>")
 
 -- find files with telescope
 nmap("<c-p>", "<cmd>Telescope find_files<cr>")
+nmap("<leader><space>", "<cmd>Telescope buffers<cr>")
 
 -- paste and without overwriting register
 vmap("<leader>p", '"_dP')
@@ -179,6 +180,7 @@ wk.register({
 		r = { "<cmd>Telescope lsp_references<cr>", "references" },
 		g = { "<cmd>Telescope live_grep<cr>", "grep" },
 		b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "fuzzy" },
+		o = { "<cmd>Telescope oldfiles<cr>", "recents" },
 		m = { "<cmd>Telescope marks<cr>", "marks" },
 		M = { "<cmd>Telescope man_pages<cr>", "man pages" },
 		c = { "<cmd>Telescope git_commits<cr>", "git commits" },

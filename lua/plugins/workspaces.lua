@@ -1,6 +1,8 @@
+-- vim: ts=2
 return {
 	{
 		"gnikdroy/projections.nvim",
+		version = 'pre_release',
 		keys = {
 			{
 				"<leader>fp",
@@ -13,6 +15,12 @@ return {
 			vim.opt.sessionoptions:append("localoptions") -- Save localoptions to session file
 			require("projections").setup({
 				store_hooks = {
+					workspaces = {
+						{ '~/projects/hrdag', patterns = { '.git' } },
+						{ '~/src', patterns = { '.git' } },
+					},
+					workspaces_file = "~/.local/state/nvim/workspaces.json",          -- Path to workspaces json file
+          sessions_directory = "~/.local/state/nvim/sessions",        -- Directory where sessions are stored
 					pre = function()
 						-- nvim-tree
 						local nvim_tree_present, api = pcall(require, "nvim-tree.api")
@@ -38,15 +46,22 @@ return {
 					Session.store(vim.loop.cwd())
 				end,
 			})
-
-			-- Switch to project if vim was started in a project dir
-			local switcher = require("projections.switcher")
+			-- If vim was started with arguments, do nothing
+			-- If in some project's root, attempt to restore that project's session
+			-- If not, restore last session
+			-- If no sessions, do nothing
+			local Session = require("projections.session")
 			vim.api.nvim_create_autocmd({ "VimEnter" }, {
 				callback = function()
-					if vim.fn.argc() == 0 then
-						switcher.switch(vim.loop.cwd())
+					if vim.fn.argc() ~= 0 then return end
+					local session_info = Session.info(vim.loop.cwd())
+					if session_info == nil then
+						Session.restore_latest()
+					else
+						Session.restore(vim.loop.cwd())
 					end
 				end,
+				desc = "Restore last session automatically"
 			})
 		end,
 	},
