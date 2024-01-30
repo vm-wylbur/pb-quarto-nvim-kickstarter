@@ -74,8 +74,9 @@ vim.opt.winbar = "%f"
 --don't continue comments automagically
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 
--- hide cmdline when not used
-vim.opt.cmdheight = 0
+-- DO NOT SET TO ZERO: you'll get so much pestering
+-- https://www.reddit.com/r/neovim/comments/124s68r/press_enter_or_type_command_to_continue_always/
+vim.opt.cmdheight = 1
 
 -- scroll before end of window
 vim.opt.scrolloff = 5

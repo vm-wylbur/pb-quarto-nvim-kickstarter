@@ -49,6 +49,14 @@ imap(";", ";<c-g>u")
 
 nmap("Q", "<Nop>")
 
+-- TODO:
+-- terminal settings need attetion:
+-- :cnoremap <C-A> <Home>
+-- :cnoremap <C-F> <Right>
+-- :cnoremap <C-B> <Left>
+-- :cnoremap <Esc>b <S-Left>
+-- :cnoremap <Esc>f <S-Right>
+
 -- send code with ctrl+Enter
 -- just like in e.g. RStudio
 -- needs kitty (or other terminal) config:
@@ -107,9 +115,10 @@ end
 --add your own here if you want them to
 --show up in the popup as well
 wk.register({
+	b = { "<cmd>Telescope buffers<cr>", "buffers" },
 	c = {
 		name = "code",
-		c = { ":SlimeConfig<cr>", "slime config" },
+		c ={ ":SlimeConfig<cr>", "slime config" },
 		n = { ":vsplit term://$SHELL<cr>", "new terminal" },
 		r = { ":vsplit term://R<cr>", "new R terminal" },
 		p = { ":vsplit term://python<cr>", "new python terminal" },
@@ -238,14 +247,8 @@ wk.register({
 			c = { ":GitBlameCopyCommitURL<cr>", "copy" },
 		},
 	},
-	w = {
-		name = "write",
-		w = { ":w<cr>", "write" },
-	},
-	x = {
-		name = "execute",
-		x = { ":w<cr>:source %<cr>", "file" },
-	},
+	w = { ":w<cr>", "write" },  -- save
+	x = { ":w<cr>:source %<cr>", "run file" }, -- run this file
 }, { mode = "n", prefix = "<leader>" })
 
 local is_code_chunk = function()

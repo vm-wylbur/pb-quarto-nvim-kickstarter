@@ -406,6 +406,7 @@ return {
             },
             plugins = {
               pycodestyle = {
+                enabled = true,
                 ignore = {
                   -- 'W391',
                   -- 'W292', -- no blank line after file
@@ -417,21 +418,19 @@ return {
                   -- 'E402', -- imports not at top
                   -- 'E741', -- ambiguous variable name
                 },
-                maxLineLength = 120
+                maxLineLength = 88,
               },
               -- black = { enabled = true },
-              -- pylsp_mypy = { enabled = true },  -- doesn't seem to do anything!
+              mccabe = { enabled = true , max_complexity = 10 },
+              pylsp_mypy = { enabled = true },
 
-              -- pylint is chatty, but useful
-              -- pylint = { enabled = true, executable = "pylint" },
-              mypy = {
-                enabled = true,
-                dmypy = true,
-                live_mode = false,
-              },
-              rope = {
+              -- pylint = { enabled = true, executable = "pylint" },   -- pylint is chatty, but useful
 
-              },
+              -- mypy = {   -- solid complaining
+              --   enabled = true,
+              --   dmypy = true,
+              --   live_mode = true,
+              -- },
             }
           }
         },
@@ -501,27 +500,27 @@ return {
 
       -- optional
       -- more things to try:
-      {
-        "zbirenbaum/copilot.lua",
-        config = function()
-          require("copilot").setup({
-            suggestion = {
-              enabled = true,
-              auto_trigger = true,
-              debounce = 75,
-              keymap = {
-                accept = "<c-a>",
-                accept_word = false,
-                accept_line = false,
-                next = "<M-]>",
-                prev = "<M-[>",
-                dismiss = "<C-]>",
-              },
-            },
-            panel = { enabled = false },
-          })
-        end,
-      },
+      -- {
+      --   "zbirenbaum/copilot.lua",
+      --   config = function()
+      --     require("copilot").setup({
+      --       suggestion = {
+      --         enabled = true,
+      --         auto_trigger = true,
+      --         debounce = 75,
+      --         keymap = {
+      --           accept = "<c-a>",
+      --           accept_word = false,
+      --           accept_line = false,
+      --           next = "<M-]>",
+      --           prev = "<M-[>",
+      --           dismiss = "<C-]>",
+      --         },
+      --       },
+      --       panel = { enabled = false },
+      --     })
+      --   end,
+      -- },
     },
     config = function()
       local cmp = require("cmp")
@@ -540,6 +539,14 @@ return {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
+        },
+        performance = {
+          -- https://github.com/hrsh7th/nvim-cmp/issues/598
+          -- https://nix-community.github.io/nixvim/plugins/nvim-cmp/performance.html
+          debounce = 150,
+          throttle = 1000,
+          fetching_timeout = 200,
+          trigger_debounce_time = 500,
         },
         mapping = {
           ["<C-f>"] = cmp.mapping.scroll_docs(-4),

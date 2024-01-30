@@ -164,16 +164,16 @@ return {
   -- show keybinding help window
   { "folke/which-key.nvim" },
 
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = {
-      { "<leader>lo", ":SymbolsOutline<cr>", desc = "symbols outline" },
-    },
-    config = function()
-      require("symbols-outline").setup()
-    end,
-  },
+  -- {
+  --   "simrat39/symbols-outline.nvim",
+  --   cmd = "SymbolsOutline",
+  --   keys = {
+  --     { "<leader>lo", ":SymbolsOutline<cr>", desc = "symbols outline" },
+  --   },
+  --   config = function()
+  --     require("symbols-outline").setup()
+  --   end,
+  -- },
 
   -- terminal
   {

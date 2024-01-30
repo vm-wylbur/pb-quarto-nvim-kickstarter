@@ -2,7 +2,7 @@
 return {
 	{
 		"gnikdroy/projections.nvim",
-		version = 'pre_release',
+		branch = "pre_release",
 		keys = {
 			{
 				"<leader>fp",
