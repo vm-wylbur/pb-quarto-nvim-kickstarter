@@ -35,6 +35,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+require("huez").setup({})
+
+require('reactive').setup {
+  builtin = {
+    cursorline = true,
+    cursor = true,
+    modemsg = true
+  }
+}
+
+local colorscheme = require("huez.api").get_colorscheme()
+vim.cmd("colorscheme " .. colorscheme)
 
 local Session = require("projections.session")
 vim.api.nvim_create_user_command("StoreProjectSession", function()

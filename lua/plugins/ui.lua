@@ -119,7 +119,7 @@ return {
       })
     end,
   },
-
+  { 'rasulomaroff/reactive.nvim' },
   {
     "nanozuki/tabby.nvim",
     config = function()
