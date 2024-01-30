@@ -420,17 +420,15 @@ return {
                 },
                 maxLineLength = 88,
               },
-              -- black = { enabled = true },
+              black = { enabled = true },
               mccabe = { enabled = true , max_complexity = 10 },
               pylsp_mypy = { enabled = true },
-
-              -- pylint = { enabled = true, executable = "pylint" },   -- pylint is chatty, but useful
-
-              -- mypy = {   -- solid complaining
-              --   enabled = true,
-              --   dmypy = true,
-              --   live_mode = true,
-              -- },
+              pylint = { enabled = false, executable = "pylint" },  -- chatty, but useful
+              mypy = {   -- solid complaining
+                enabled = false,
+                dmypy = true,
+                live_mode = true,
+              },
             }
           }
         },
