@@ -605,7 +605,7 @@ return {
         },
         sources = {
           { name = "otter" }, -- for code chunks in quarto
-          { name = "path" },
+          { name = "path", option = { label_trailing_slash = true } },
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
           { name = "luasnip",                keyword_length = 3, max_item_count = 3 },
